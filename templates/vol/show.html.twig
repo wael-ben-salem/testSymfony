@@ -1,0 +1,21 @@
+{# templates/vol/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Vol{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Détails du Vol</h1>
+
+        <ul class="list-group">
+            <li class="list-group-item"><strong>ID:</strong> {{ vol.id }}</li>
+            <li class="list-group-item"><strong>Ville de Destination:</strong> {{ vol.villeDestination }}</li>
+            <li class="list-group-item"><strong>Date de Départ:</strong> {{ vol.dateDeDepart|date('Y-m-d H:i') }}</li>
+            <li class="list-group-item"><strong>Date d'Arrivée:</strong> {{ vol.dateDArrivee|date('Y-m-d H:i') }}</li>
+            <li class="list-group-item"><strong>Aéroport:</strong> {{ vol.aeroport.nom }}</li>
+        </ul>
+
+        <a href="{{ path('vol_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+    </div>
+{% endblock %}

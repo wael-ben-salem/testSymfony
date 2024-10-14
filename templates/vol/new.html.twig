@@ -1,0 +1,35 @@
+{# templates/vol/new.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un nouveau Vol{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Créer un nouveau Vol</h1>
+
+        {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form.villeDestination) }}
+                {{ form_widget(form.villeDestination, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.villeDestination) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.dateDeDepart) }}
+                {{ form_widget(form.dateDeDepart, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.dateDeDepart) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.dateDArrivee) }}
+                {{ form_widget(form.dateDArrivee, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.dateDArrivee) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.aeroport) }}
+                {{ form_widget(form.aeroport, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.aeroport) }}
+            </div>
+            <button type="submit" class="btn btn-primary">Créer Vol</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

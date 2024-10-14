@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\VolRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: VolRepository::class)]
 class Vol
@@ -14,17 +15,25 @@ class Vol
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: "La ville de destination est obligatoire.")]
     private $villeDestination;
 
-    #[ORM\Column(type: 'datetime')]
-    private $dateDeDépart;
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\NotBlank(message: "La date de départ est obligatoire.")]
+    #[Assert\Type("\DateTimeInterface")]
+    private $dateDeDepart;
 
-    #[ORM\Column(type: 'datetime')]
-    private $dateDArrivée;
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\NotBlank(message: "La date d'arrivée est obligatoire.")]
+    #[Assert\Type("\DateTimeInterface")]
+    private $dateDArrivee;
 
     #[ORM\ManyToOne(targetEntity: Aeroport::class, inversedBy: 'vols')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotNull(message: "L'aéroport est obligatoire.")]
     private $aeroport;
+
+    // Getters and Setters
 
     public function getId(): ?int
     {
@@ -43,26 +52,26 @@ class Vol
         return $this;
     }
 
-    public function getDateDeDépart(): ?\DateTimeInterface
+    public function getDateDeDepart(): ?\DateTimeInterface
     {
-        return $this->dateDeDépart;
+        return $this->dateDeDepart;
     }
 
-    public function setDateDeDépart(\DateTimeInterface $dateDeDépart): self
+    public function setDateDeDepart(\DateTimeInterface $dateDeDepart): self
     {
-        $this->dateDeDépart = $dateDeDépart;
+        $this->dateDeDepart = $dateDeDepart;
 
         return $this;
     }
 
-    public function getDateDArrivée(): ?\DateTimeInterface
+    public function getDateDArrivee(): ?\DateTimeInterface
     {
-        return $this->dateDArrivée;
+        return $this->dateDArrivee;
     }
 
-    public function setDateDArrivée(\DateTimeInterface $dateDArrivée): self
+    public function setDateDArrivee(\DateTimeInterface $dateDArrivee): self
     {
-        $this->dateDArrivée = $dateDArrivée;
+        $this->dateDArrivee = $dateDArrivee;
 
         return $this;
     }

@@ -20,6 +20,9 @@ class AeroportType extends AbstractType
             ->add('ville', ChoiceType::class, [
                 'label' => 'City',
                 'choices' => [
+                    'Tunis' => 'Tunis',
+                    'Marseille' => 'Marseille',
+
                     'Paris' => 'Paris',
                     'Rome' => 'Rome',
                     'Alger' => 'Alger',

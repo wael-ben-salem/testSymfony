@@ -1,0 +1,42 @@
+{# templates/vol/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Vols{% endblock %}
+
+{% block body %}
+    <h1>Liste des Vols</h1>
+
+    <a href="{{ path('vol_new') }}" class="btn btn-primary mb-3">Créer un nouveau Vol</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ville de Destination</th>
+                <th>Date de Départ</th>
+                <th>Date d'Arrivée</th>
+                <th>Aéroport</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vol in vols %}
+                <tr>
+                    <td>{{ vol.id }}</td>
+                    <td>{{ vol.villeDestination }}</td>
+                    <td>{{ vol.dateDeDepart|date('Y-m-d H:i') }}</td>
+                    <td>{{ vol.dateDArrivee|date('Y-m-d H:i') }}</td>
+                    <td>{{ vol.aeroport.nom }}</td>
+                    <td>
+                        <a href="{{ path('vol_show', {'id': vol.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Aucun vol trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

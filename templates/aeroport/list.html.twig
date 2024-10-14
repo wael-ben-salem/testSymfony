@@ -1,0 +1,8 @@
+<h1>Liste des Aéroports</h1>
+<ul>
+    {% for aeroport in aeroports %}
+        <li>{{ aeroport.nom }} - {{ aeroport.ville }}</li>
+    {% else %}
+        <li>Aucun aéroport trouvé.</li>
+    {% endfor %}
+</ul>
